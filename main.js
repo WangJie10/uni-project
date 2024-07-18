@@ -7,6 +7,7 @@ uni.$http = $http
 
 // $http.baseUrl = 'https://www.uinav.com'
 $http.baseUrl = 'https://api-hmugo-web.itheima.net'
+
 // 请求拦截器
 $http.beforeRequest = function (options) {
   uni.showLoading({
@@ -17,6 +18,14 @@ $http.beforeRequest = function (options) {
 // 响应拦截器
 $http.afterRequest = function () {
   uni.hideLoading()
+}
+// 为 uni 对象挂载自定义的 $showMsg() 方法
+uni.$showMsg = function (title = '数据加载失败！', duration = 1500) {
+  uni.showToast({
+    title,
+    duration,
+    icon: 'none',
+  })
 }
 
 // #ifndef VUE3
